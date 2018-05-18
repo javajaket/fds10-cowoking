@@ -1,0 +1,315 @@
+```css
+@import url("https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css");
+/* 이미지 폰트 spoqa 텍스트화 하기. body에 font-family 적용 필요/ 적용 후 글꼴 변경 확인 안될 때 검사 -> 네트워크 > spoqa 확인 가능 */
+@import url("normalize.css");
+@import url("fontello.css");
+/* 서브메뉴의 a 태그에 아이콘의 클래스 삽입 */
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+/* 숨김 콘텐츠 */
+.readable-hidden{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(0,0,0,0);
+  margin: -1px;
+  /* width & height을 준 결과 빨간 점처럼 보여짐 이를 해결하기 위해 clip 설정
+  clip absolute 일 때만 사용 가능하고 기준은 항상 x,y축
+  clip설정으로는 브라우저마다 다르게 보여질 수 있기 때문에 margin까지 적용 */
+  overflow: hidden;
+  /* 메인 메뉴 다른 숨김처리 방법 스크린리더의 가상커서가 바깥쪽으로 가는 문제를 해결하기 위해
+        width & heigh 를 0으로, 텍스트노드는 살아 남음. 그래서 overflow: hidden
+        그러나 상자를 0으로 하면 컨텐츠를 가상커서가 탐지 못함 */
+  /* left: -9999em; */
+}
+  /* pos:a 블록의 성질을 유지한다/레이어화 시키고 nomal flow를 벗어난다 */
+  /* display: none; */
+  html{
+    font-size: 10px;
+    /* 폰트사이즈 단위는 px,em,rem,% 그리고 viewport 단위인 vw,vh가 있다
+    px는 고정된 글씨크기에, em은 상속받은 크기, rem은 root의 설정만 참고하고, %는 75%일 경우 
+    기존 브라우저 글자 크기 기준으로 16*0.75를 적용한다 */
+  }
+  body {
+    background-color: #fff;
+    font-size: 1.4rem;
+    font-family: 'Spoqa Han Sans';
+    /* 글꼴 적용을 위한 선언 */
+    /* color: #181818; */
+  }
+  h2{
+    margin: 0;
+    font-size: 1em;
+    font-weight: normal
+  }
+  /* 레이아웃 */
+  .wrapper{
+    background-color: silver;
+    background-image: url("images/bg_flower.png");
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    /* 뒤에 숨겨짐 효과. 슬로건을 투명하게 만들 예정 */
+    /* background-attachment: fixed; */
+  }
+  .header, .visual, .main, .slogan, .footer{
+    width: 940px;
+    margin: 0 auto;
+  }
+  .header{
+    background-color: #fff;
+    padding: 0 30px 40px;
+    position: relative;
+    border-radius: 0 0 15px 15px;
+  }
+/* logo */
+.logo{
+  /* background-color: yellow; */
+  position: absolute;
+  /* absolute는 자기보다 상위요소가 가지고 있는 포지션값이 static이 아닐 때 */
+  top : 45px;
+  left : 65px;
+  /* 레이어하는 기능 */
+  /* padding : 45px 0 0 65px; */
+}
+/* memberlink */
+.member{
+  /* background-color: yellow; */
+  text-align: right;
+  font-size: 0;
+  padding : 10px 0;
+  position: relative;
+  right : -10px;
+  /* font-size: 2em; */
+}
+.member li{
+  /* background-color: pink; */
+  display: inline-block;
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  /* tt + tab : uppercase 는 대문자로 변경 */
+  /* padding: 0 10px; */
+  /* width :100px; */
+  /* display: inline 옵션에서 인라인 상자라서 width를 못쓴다. 그래서 inline-block로 변경이 필요하다*/
+}
+.member li:nth-child(n+2)::before{
+  content: ":";
+  /* background: lime; */
+  /* .member li:nth-child(n+2)::before -> content를 가져야 한다. content : ":"를 넣으면 :이 라임색으로 처리됨 */
+}
+.member a{
+  padding: 5px 10px;
+  /* background-color: orange; */
+  /* display: inline-block; */
+}
+/* 메인메뉴 */
+.menu{
+  /* 그라데이션 효과 넣기 */
+  background: linear-gradient(to bottom, #1e5799 0%,#1ebacc 37%,#2989d8 59%,#7db9e8 100%);
+  /* background-image: linear-gradient(-45deg, red 0%, green 30%, blue 100%); */
+  background-color: #ce3567;
+  /* background-color: yellow; */
+  /* background-image: url("images/ani_flower_03.png"); */
+  /* background-repeat: no-repeat; */
+  /* 배경색 위에 이미지 올라오는데 단일 이미지가 repeat됨. repeat 못하게도 설정 가능 */
+  /* background-position: 50% 30%; */
+  /* X축 Y축 (%도 가능) 픽셀은 배경이미지 기준으로 보여지고 백분율 방식은 해당 이미지의 크기에 대한 백분율도 적용해서 배경의 백분율 
+  지점과 일치하는 점을 기준으로 그려냄 */
+  /* background-image: repeating-linear-gradient(-45deg, red 0, red 50px, green 50px, green 100px); */
+  /* background-size: 200px 200px; */
+  /* 비트맵 크기 조절이기 때문에 해상도 문제 발생. 그래서 요즘은 SVG 이용 */
+  /* background: yellow url("images/ani_flower_03.png") no-repeat 50% 30% 200px 200px; */
+  /* bg는 단축 표기법으로 기기에 따라 구현이 안될 수도 있음 */
+
+  /* 헤더 박스 위에 라인 넣기 */
+  border-top: 2px solid #000;
+  /* 축약해서는 border로 사용가능, border는 선있는 곳 까지 색깔이 칠해짐 */
+  /* dashed - - - - 같은 선 */
+  /* outline-offset: -20px; */
+  /* outline: 10px dashed blue; 
+  out line은 키보드의 포커싱을 받기 때문에 top등이 적용받지 않는다 */
+  /* 실제 박스 크기에 영향을 받지 않는다 */
+  /* box-shadow: 0 -5px 0 0 green; */
+  /* 0(X) 0(Y) 0(blur) 0(spread-그림자 번지기) COLOR + border 같이 그려보면 아웃라인처럼 보임 */
+  
+  /* 둥근모서리 처리 */
+  border-radius: 0 0 5px 5px;
+  /* border-radius: 0 0 100px 100px = x축 /0 0 50px 50px; =y축  단축 표기법*/
+  /* border-bottom-right-radius: 100px 50px; */
+  /* border-bottom-left-radius: 100px 50px; */
+  /* border-radius: 0 0 100px 100px /0 0 50px 50px; 와 동일한 결과 출력 */
+  /* box-shadow: 0 20px 0 0 #000; 그림자도 모서리 둥글게 아웃라인 방법은 적용 안됨*/ 
+  /* color: #FFF;  sub-menu에 다 적용되기 때문에 menu-item-text에 COLOR:white 따로 넣어준다 */
+  padding-left: 225px;
+  /* 로고를 위한 설정/ 모든 메뉴 컨텐츠가 우측으로 들여 써짐 */
+  height: 47px;
+}
+.menu-item{
+  /* background-color: skyblue; */
+  float : left;
+  /* 로고를 만드는 방법에는 "float", flex, display-"inline-block", (GRID)가 있음 */
+  position: relative;
+  /* sub-menu의 header기준을 menu-item으로 변경하기 위해 적용/ position: absolute로 변경도 필요 */
+}
+.menu-item-text{
+  /* 메뉴텍스트를 헤더박스(메뉴)의 중간에 배치 */
+  line-height: 45px;
+  /* padding-top: 10px; */
+  /* inline 요소이기 때문에 padding을 먹는다 */ 
+  border-left: 2px solid rgba(255,255,255,0.5);
+  padding: 0 20px;
+  /* border-left 처리 -> inline box기 때문에 표시 부적절 -> display block 화 -> 부모영역 전체가 내 영역이 됨
+  block 설정이 되어 있어서 padding으로 메뉴와 보더 사이 넓히기 가능  */
+  display: block;
+  /* padding 설정이 되어 있는 상태에서 block으로 변경해도 글자크기를 바꿔야 함. 글자크기를 바꾸면 여백 크기도 조정해야 함
+  line-height는 줄바꿈되면 적용 어려움 */
+  color: #fff;
+  font-weight: 700;
+  /* spoqa han sans에 bold로 적용 */
+  font-size: 1.6rem;
+  text-shadow: 1px 0px 0px #000, 0px 1px 0px #000, -1px 0px 0px #000, 0px -1px 0px #000;
+ /* 그림자를 오른쪽만 줘서 그림자를 만들어 윤곽체를 만든다/ ,단위로 그림자 추가 가능/ box-shadow도 설정 가능 */
+}
+/* 메뉴 하단 글자 크기만큼 언더라인 만들기 */
+.menu-item-text:hover::after{
+  content: " ";
+  background-color: #000;
+  display: block;
+  height: 2px;
+  /* block 설정이 되어 있지 않으면 height를 줄 수 없다 */
+}
+.menu-item-text:hover{
+  color: #ff0;
+  /* hover일 때만 글자 yellow, underline 적용 */
+  cursor: pointer;
+  /* 마우스가 올라 왔을 때 커서모양 변경 */
+  /* border-bottom: 2px solid #000; */
+  /* box 모델이라서 box 전체에 underline이 적용됨/ 글자크기만큼 줄이기 위해 span 요소한테 ::after 적용 -> 
+  빈 after를 block화하면 글자 밑으로 떨어짐 */
+}
+.sub-menu{
+  display: none;
+  /* background-color: pink; */
+  position: absolute;
+  /* sub-menu를 position으로 layer화 시킨다. 제자리에서 뜨면서 sub-menu의 겹침 현상이 발생 ->
+  이는 nomal flow인해 뒤에 오는 것이 가장 앞으로 보여지는 현상이다. 이것은 z-index로 조정 가능 */
+  /* display: none; */
+  /* sub-menu 감추기 */
+  top: 50px;
+  /* left: 0 !important; */
+  white-space: nowrap;
+  /* 인라인 줄바뀜 일어나지 않게 만들기 */
+}
+.sub-menu li{
+  display: inline-block;
+  /* 서브메뉴가 상위 속성의 크기의 영향을 받기 때문에 inline으로 표시되지 않음 */
+}
+/* 서브메뉴의 위치 조정 */
+.sub-menu a{
+  display: inline-block;
+  padding: 8px 5px 10px 0;
+  /* inline일 때 적용되지 않음 */
+  margin-right: 10px;
+  /* 박스 사이에 여백 할당 */
+  /* background-color: lime; */
+}
+/* 서브메뉴 앞에 아이콘 넣기 */
+.sub-menu a::before{
+  font-family: "fontello";
+  content: '\f192';
+}
+/* 서브메뉴 마우스를 갖다대면 앞에 기호 바꾸기 */
+.sub-menu a:hover:before{
+  content: '\e800';
+}
+.menu-item:nth-child(1) .sub-menu{
+  /* display: none; */
+  left: 0;
+}
+.menu-item:nth-child(2) .sub-menu{
+  /* display: none; */
+  left: 0;
+}
+.menu-item:nth-child(3) .sub-menu{
+  /* display: none; */
+  left: 0;
+}
+.menu-item:nth-child(4) .sub-menu{
+  /* display: none; */
+  right: 0;
+  /* sub-menu4클래스에 left -150 -> 메뉴에 포함된 서브메뉴를 찾자 .menu .sub-menu로 바꾸게 되면 4번째의 서브메뉴 
+  인라인박스가 헤더를 벗어남 .menu .sub-menu 는 구체성 점수가 20 클래스가 2개이므로 -> 같은 점수일 때는 나중 선언 속성이 
+  적용됨 -> ID>class>element ->그러나 html태그안에 style (inline style)이 최우선함 -> 사용 지양 중요도 순위를 높일 수 있음 ->
+  !important -> important는 가급적이면 동적인 interaction에서 다른 스타일보다 우선적으로 적용하고자 할때만 사용하자 -> 
+  각 child에 left 0, 4번에 -150 /right 0하면 부모의 우측 끝에 정렬  */
+}
+.menu-item:nth-child(5) .sub-menu{
+  /* display: none; */
+  right: 0;
+}
+.menu-item:nth-child(6) .sub-menu{
+  /* display: none; */
+  right: 0;
+}
+/* 비주얼 */
+.visual{
+  background-color: lime;
+  height: 10vh;
+}
+/* 메인 콘텐츠 */
+.main{
+  background-color: skyblue;
+  padding: 30px 15px;
+  border-radius: 15px 15px 0 0;
+}
+.clearfix::after{
+  content: "";
+  /* background-color: black; */
+  /* color: white; */
+  clear: both;
+  display: block;
+}
+.group{
+  height: 30vh;
+  float: left;
+  margin: 0 15px;
+}
+.group1{
+  background-color: rgba(255,255,255,.5);
+  width: 250px;
+  float: left;
+}
+.group2{
+  background-color: hsla(120,70%,60%,0.5);
+  width: 380px;
+}
+.group3{
+  background-color: tomato;
+  width: 190px;
+}
+.slogan{
+  background-color: blueviolet;
+  height: 10vh;
+  clear: both;
+}
+.footer-bg{
+  background-color: orange;
+}
+.footer{
+  background-color: silver;
+  height: 10vh;
+}
+```
